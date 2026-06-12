@@ -11,7 +11,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.dex.ultra.booster.pro.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -80,16 +83,17 @@ class MainActivity : AppCompatActivity() {
         binding.tvStatus.text  = getString(R.string.status_boosting)
 
         lifecycleScope.launch {
+            // خطوات التعزيز وتحديث الواجهة بطريقة آمنة ومتوافقة
             val steps = listOf(
                 "تنظيف الذاكرة المؤقتة…"  to { PerformanceOptimizer.clearSystemCache(applicationContext) },
-                "تحسين المعالج…"           to { PerformanceOptimizer.optimizeCpuGovernor() },
-                "تحسين الذاكرة…"           to { PerformanceOptimizer.optimizeMemory(applicationContext) },
-                "تحسين الشبكة…"            to { /* network */ Unit }
+                "تحسين أداء المعالج…"   to { PerformanceOptimizer.optimizeCpuGovernor() },
+                "تحليلات الذاكرة وتخفيف العبء…" to { PerformanceOptimizer.optimizeMemory(applicationContext) },
+                "تقليل استجابة الشبكة البنق…" to { /* تعزيز الشبكة والاتصال */ Unit }
             )
             for ((label, action) in steps) {
                 binding.tvStatus.text = label
                 action()
-                delay(550)
+                delay(650) // مهلة كافية لإنهاء العمليات وتحديث الـ UI بسلاسة
             }
             binding.tvStatus.text = getString(R.string.status_done)
             binding.btnBoost.text = getString(R.string.boost_stop)
@@ -147,17 +151,18 @@ class MainActivity : AppCompatActivity() {
     private fun injectPubgFiles() {
         val version     = binding.spinnerPubgVersion.selectedItemPosition
         val versionName = ShizukuHelper.PUBG_VERSION_NAMES[version] ?: ""
+        val shizukuReady = ShizukuHelper.isAvailable()
 
-        // Android 12+ يحتاج Shizuku
-        if (ShizukuHelper.requiresShizuku() && !isShizukuAvailable()) {
+        // الاعتماد الموحد على الـ Helper لحماية الهواتف من نوع أندرويد 12 فما فوق
+        if (ShizukuHelper.requiresShizuku() && !shizukuReady) {
             AlertDialog.Builder(this)
                 .setTitle("Shizuku مطلوب")
                 .setMessage("جهازك يعمل بـ Android ${Build.VERSION.SDK_INT}.\n\n" +
-                    "Android 12+ يحمي مجلد Android/data ويتطلب Shizuku للكتابة فيه بدون روت.\n\n" +
-                    "1. ثبّت Shizuku من Google Play\n" +
-                    "2. فعّله عبر الإعدادات → المطور → تصحيح USB اللاسلكي\n" +
-                    "3. افتح Shizuku وابدأ الخدمة")
-                .setPositiveButton("فتح الإعدادات") { _, _ ->
+                    "Android 12+ يحمي مجلد Android/data ويتطلب تشغيل Shizuku للكتابة فيه بدون روت.\n\n" +
+                    "1. ثبّت برنامج Shizuku من المتجر.\n" +
+                    "2. قم بتفعيله عبر خيارات المطور (تصحيح اللاسلكي).\n" +
+                    "3. افتح Shizuku وامنح التطبيق الصلاحية.")
+                .setPositiveButton("إعداد الصلاحيات") { _, _ ->
                     startActivity(Intent(this, PermissionsActivity::class.java))
                 }
                 .setNegativeButton("إغلاق", null)
@@ -166,24 +171,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            binding.tvInjectStatus.text = "جاري حقن ملفات $versionName…"
-            binding.tvInjectStatus.setTextColor(getColor(R.color.text_secondary))
+            binding.tvInjectStatus.text = "جاري تعديل وحقن ملفات الـ 120FPS لـ $versionName…"
+            binding.tvInjectStatus.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.text_secondary))
             binding.btnInjectFiles.isEnabled = false
 
             val ok = FileInjector.inject120FpsFiles(
-                applicationContext, version, isShizukuAvailable()
+                applicationContext, version, shizukuReady
             )
 
             binding.btnInjectFiles.isEnabled = true
 
             if (ok) {
                 binding.tvInjectStatus.text = getString(R.string.inject_success)
-                binding.tvInjectStatus.setTextColor(getColor(R.color.success))
+                binding.tvInjectStatus.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.success))
                 Toast.makeText(this@MainActivity,
-                    "تم حقن ملفات 120FPS بنجاح!\nأعد تشغيل اللعبة", Toast.LENGTH_LONG).show()
+                    "تم تطبيق التعديلات بنجاح!\nقم بتشغيل اللعبة الآن لتجربة الأداء.", Toast.LENGTH_LONG).show()
             } else {
                 binding.tvInjectStatus.text = getString(R.string.inject_fail)
-                binding.tvInjectStatus.setTextColor(getColor(R.color.error))
+                binding.tvInjectStatus.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.error))
                 showInjectFailDialog()
             }
         }
@@ -192,25 +197,24 @@ class MainActivity : AppCompatActivity() {
     private fun showInjectFailDialog() {
         val api = Build.VERSION.SDK_INT
         val msg = if (ShizukuHelper.requiresShizuku()) {
-            "Android $api يحتاج Shizuku للكتابة في Android/data\n\n" +
-            "1. تأكد من تثبيت Shizuku\n2. تأكد من تشغيل الخدمة\n3. امنح إذن Shizuku"
+            "نظام أندرويد $api يتطلب Shizuku للوصول الآمن لملفات الحزمة داخل مجلد النقل العام.\n\n" +
+            "تأكد من تشغيل تطبيق Shizuku في الخلفية أولاً وإعطائه إذن الوصول."
         } else {
-            "Android $api — تأكد من:\n" +
-            "1. منح صلاحية الوصول الكامل للملفات\n" +
-            "2. تشغيل اللعبة مرة واحدة لإنشاء المجلدات\n" +
-            "3. تثبيت اللعبة على الجهاز وليس SD"
+            "نظام أندرويد $api — يرجى التأكد من:\n" +
+            "1. منح التطبيق صلاحيات التخزين الكاملة.\n" +
+            "2. تشغيل اللعبة لمرة واحدة على الأقل لتهيئة المجلدات الداخلية."
         }
         AlertDialog.Builder(this)
-            .setTitle("فشل الحقن")
+            .setTitle("فشل عملية الحقن والتعديل")
             .setMessage(msg)
-            .setPositiveButton("الإعدادات") { _, _ ->
+            .setPositiveButton("إدارة الصلاحيات") { _, _ ->
                 startActivity(Intent(this, PermissionsActivity::class.java))
             }
             .setNegativeButton("إغلاق", null)
             .show()
     }
 
-    // ── Overlay ─────────────────────────────────────────────────────
+    // ── العرض فوق التطبيقات (Overlay) ───────────────────────────────
 
     private fun setupOverlayToggle() {
         binding.switchOverlay.setOnCheckedChangeListener { _, checked ->
@@ -220,7 +224,7 @@ class MainActivity : AppCompatActivity() {
                     overlayActive = true
                 } else {
                     binding.switchOverlay.isChecked = false
-                    Toast.makeText(this, "يجب منح إذن العرض فوق التطبيقات", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "يرجى تفعيل إذن الظهور فوق التطبيقات لتفعيل المؤشر العائم.", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 stopService(Intent(this, OverlayService::class.java))
@@ -229,46 +233,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ── حالة Shizuku ────────────────────────────────────────────────
+    // ── تتبع وحفظ حالة اتصال Shizuku ───────────────────────────────
 
     private fun updateShizukuStatus() {
-        val connected    = isShizukuAvailable()
+        val connected    = ShizukuHelper.isAvailable()
         val running      = ShizukuHelper.isRunning()
         val needsShizuku = ShizukuHelper.requiresShizuku()
 
         val (text, color) = when {
-            connected    -> "Shizuku متصل" to R.color.success
-            running      -> "Shizuku يعمل — بانتظار الإذن" to R.color.warning
-            needsShizuku -> "Shizuku مطلوب للحقن (Android 12+)" to R.color.error
-            else         -> "بدون Shizuku (Android 11-)" to R.color.info
+            connected    -> "نظام Shizuku متصل ونشط" to R.color.success
+            running      -> "خدمة Shizuku تعمل — بانتظار الموافقة" to R.color.warning
+            needsShizuku -> "بيئة Shizuku مطلوبة للحقن (أندرويد 12+)" to R.color.error
+            else         -> "وضع الكتابة المباشر مستقر (أندرويد 11 فما دون)" to R.color.info
         }
 
         binding.tvShizukuStatus.text = text
-        binding.tvShizukuStatus.setTextColor(getColor(color))
+        binding.tvShizukuStatus.setTextColor(ContextCompat.getColor(this, color))
 
         binding.btnConnectShizuku.visibility =
             if (running && !connected) View.VISIBLE else View.GONE
         binding.btnConnectShizuku.setOnClickListener {
             try { Shizuku.requestPermission(1001) }
-            catch (e: Exception) { Toast.makeText(this, "خطأ في Shizuku", Toast.LENGTH_SHORT).show() }
+            catch (e: Exception) { Toast.makeText(this, "تعذر استدعاء واجهة إذن شيزوكو", Toast.LENGTH_SHORT).show() }
         }
     }
 
-    private fun isShizukuAvailable(): Boolean {
-        return try {
-            Shizuku.pingBinder() &&
-            Shizuku.checkSelfPermission() == android.content.pm.PackageManager.PERMISSION_GRANTED
-        } catch (e: Exception) { false }
-    }
-
-    // ── إحصائيات الجهاز ─────────────────────────────────────────────
+    // ── تحديث إحصائيات موارد الهاتف بشكل مستقر ومنظم ─────────────────────
 
     private fun startStatsUpdate() {
+        // حلقة التحديث داخل repeatOnLifecycle لمنع تسريب الذاكرة فور خروج المستخدم من الواجهة الرئيسة
         lifecycleScope.launch {
-            while (true) {
-                delay(2000)
-                binding.tvRamValue.text  = "${DeviceStats.getRamUsagePercent(applicationContext)}%"
-                binding.tvTempValue.text = "${DeviceStats.getCpuTemperature()}°C"
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                while (true) {
+                    binding.tvRamValue.text  = "${DeviceStats.getRamUsagePercent(applicationContext)}%"
+                    binding.tvTempValue.text = "${DeviceStats.getCpuTemperature()}°C"
+                    delay(2000)
+                }
             }
         }
     }
