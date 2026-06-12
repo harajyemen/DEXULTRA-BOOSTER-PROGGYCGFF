@@ -7,67 +7,67 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dex.ultra.booster.pro.databinding.ActivitySensitivityBinding
+import com.google.android.material.tabs.TabLayout
 
 class SensitivityActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySensitivityBinding
 
-    // Sensitivity presets [camera, ads, gyro, recoil]
     private val presets = mapOf(
         "classic_no_gyro" to SensPreset(
             name = "كلاسيكي – بدون جيرو",
             camera = intArrayOf(100, 98, 86, 92, 95, 98),
             ads = intArrayOf(55, 52, 48, 40, 35, 30),
-            gyro = intArrayOf(0, 0, 0, 0, 0, 0),
+            gyro = intArrayOf(0, 0, 0),
             recoil = 75
         ),
         "warehouse_no_gyro" to SensPreset(
             name = "مستودع – بدون جيرو",
             camera = intArrayOf(110, 105, 95, 100, 98, 100),
             ads = intArrayOf(65, 60, 55, 48, 42, 38),
-            gyro = intArrayOf(0, 0, 0, 0, 0, 0),
+            gyro = intArrayOf(0, 0, 0),
             recoil = 80
         ),
         "headshot_no_gyro" to SensPreset(
             name = "هيدشوت – بدون جيرو",
             camera = intArrayOf(95, 93, 82, 88, 90, 92),
             ads = intArrayOf(50, 48, 44, 36, 32, 28),
-            gyro = intArrayOf(0, 0, 0, 0, 0, 0),
+            gyro = intArrayOf(0, 0, 0),
             recoil = 70
         ),
         "classic_gyro" to SensPreset(
             name = "كلاسيكي – مع جيرو",
             camera = intArrayOf(100, 98, 86, 92, 95, 98),
             ads = intArrayOf(55, 52, 48, 40, 35, 30),
-            gyro = intArrayOf(300, 280, 260, 220, 200, 180),
+            gyro = intArrayOf(300, 280, 260),
             recoil = 75
         ),
         "warehouse_gyro" to SensPreset(
             name = "مستودع – مع جيرو",
             camera = intArrayOf(110, 105, 95, 100, 98, 100),
             ads = intArrayOf(65, 60, 55, 48, 42, 38),
-            gyro = intArrayOf(350, 320, 290, 250, 230, 210),
+            gyro = intArrayOf(350, 320, 290),
             recoil = 80
         ),
         "headshot_gyro" to SensPreset(
             name = "هيدشوت – مع جيرو",
             camera = intArrayOf(120, 115, 105, 110, 108, 110),
             ads = intArrayOf(60, 58, 54, 46, 40, 36),
-            gyro = intArrayOf(400, 380, 350, 300, 280, 260),
+            gyro = intArrayOf(400, 380, 350),
             recoil = 85
         ),
         "pro_competitive" to SensPreset(
             name = "تنافسي احترافي",
             camera = intArrayOf(105, 100, 90, 95, 93, 96),
             ads = intArrayOf(58, 55, 50, 43, 37, 33),
-            gyro = intArrayOf(320, 300, 275, 240, 215, 195),
+            gyro = intArrayOf(320, 300, 275),
             recoil = 78
         ),
         "smooth_antilag" to SensPreset(
             name = "ضد اللاق",
             camera = intArrayOf(88, 85, 75, 82, 84, 88),
             ads = intArrayOf(48, 46, 42, 34, 30, 26),
-            gyro = intArrayOf(280, 260, 240, 200, 185, 165),
+            gyro = intArrayOf(280, 260, 240),
             recoil = 68
         )
     )
@@ -78,7 +78,6 @@ class SensitivityActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySensitivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.title = getString(R.string.sensitivity_title)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -91,16 +90,14 @@ class SensitivityActivity : AppCompatActivity() {
         binding.tabLayoutSens.addTab(binding.tabLayoutSens.newTab().setText(getString(R.string.gyro_off)))
         binding.tabLayoutSens.addTab(binding.tabLayoutSens.newTab().setText(getString(R.string.gyro_on)))
 
-        binding.tabLayoutSens.addOnTabSelectedListener(object :
-            com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: com.google.android.material.tabs.TabLayout.Tab) {
+        binding.tabLayoutSens.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
                 updatePresetVisibility(tab.position == 1)
             }
-            override fun onTabUnselected(tab: com.google.android.material.tabs.TabLayout.Tab) {}
-            override fun onTabReselected(tab: com.google.android.material.tabs.TabLayout.Tab) {}
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
-        // Preset chip group
         binding.chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
             if (checkedIds.isEmpty()) return@setOnCheckedStateChangeListener
             val hasGyro = binding.tabLayoutSens.selectedTabPosition == 1
@@ -135,7 +132,6 @@ class SensitivityActivity : AppCompatActivity() {
         currentPreset = preset
         binding.tvPresetName.text = preset.name
 
-        // Update sliders
         binding.sliderCamera3p.value = preset.camera[0].toFloat()
         binding.sliderCameraRedZone.value = preset.camera[1].toFloat()
         binding.sliderCameraSmoke.value = preset.camera[2].toFloat()
@@ -150,7 +146,6 @@ class SensitivityActivity : AppCompatActivity() {
         binding.sliderAds8x.value = preset.ads[4].toFloat()
         binding.sliderAdsWin94.value = preset.ads[5].toFloat()
 
-        // Gyro visibility
         val showGyro = preset.gyro.any { it > 0 }
         binding.layoutGyro.visibility = if (showGyro) android.view.View.VISIBLE else android.view.View.GONE
         if (showGyro) {
@@ -158,7 +153,6 @@ class SensitivityActivity : AppCompatActivity() {
             binding.sliderGyroAds.value = preset.gyro[1].toFloat().coerceIn(0f, 400f)
             binding.sliderGyro4x.value = preset.gyro[2].toFloat().coerceIn(0f, 400f)
         }
-
         binding.sliderRecoil.value = preset.recoil.toFloat()
     }
 
@@ -166,14 +160,12 @@ class SensitivityActivity : AppCompatActivity() {
         binding.btnApplySens.setOnClickListener {
             Toast.makeText(this, "✅ تم حفظ إعدادات الحساسية", Toast.LENGTH_SHORT).show()
         }
-
         binding.btnCopySens.setOnClickListener {
             val text = buildSensText()
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.setPrimaryClip(ClipData.newPlainText("Sensitivity", text))
             Toast.makeText(this, "📋 تم نسخ الإعدادات", Toast.LENGTH_SHORT).show()
         }
-
         binding.btnResetSens.setOnClickListener {
             loadPreset("classic_no_gyro")
             Toast.makeText(this, "🔄 تم إعادة التعيين", Toast.LENGTH_SHORT).show()
@@ -210,10 +202,4 @@ class SensitivityActivity : AppCompatActivity() {
     }
 }
 
-data class SensPreset(
-    val name: String,
-    val camera: IntArray,
-    val ads: IntArray,
-    val gyro: IntArray,
-    val recoil: Int
-)
+data class SensPreset(val name: String, val camera: IntArray, val ads: IntArray, val gyro: IntArray, val recoil: Int)
