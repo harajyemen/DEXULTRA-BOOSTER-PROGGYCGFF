@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             delay(650)
 
             binding.tvStatus.text = "Optimizing network..."
-            PerformanceOptimizer.optimizeNetwork() // استدعاء suspend داخل coroutine
+            PerformanceOptimizer.optimizeNetwork() // داخل coroutine
             delay(650)
 
             binding.tvStatus.text = getString(R.string.status_done)
