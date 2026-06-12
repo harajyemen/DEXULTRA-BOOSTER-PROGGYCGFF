@@ -166,7 +166,7 @@ class DnsVpnService : VpnService() {
         )
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(android.R.drawable.sym_def_app_icon)
+            .setSmallIcon(android.R.drawable.sym_def_app_icon)  // أيقونة النظام لتفادي أخطاء الموارد
             .setContentTitle("DexUltra — DNS active")
             .setContentText(statusText)
             .setOngoing(true)
