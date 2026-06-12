@@ -15,7 +15,7 @@ object PerformanceOptimizer {
     fun clearSystemCache(context: Context) {
         try {
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            // التصحيح: استخدام ComponentCallbacks2.TRIM_MEMORY_COMPLETE بدلاً من ActivityManager.TRIM_MEMORY_COMPLETE
+            // التصحيح: استخدام ComponentCallbacks2.TRIM_MEMORY_COMPLETE
             activityManager.trimMemory(ComponentCallbacks2.TRIM_MEMORY_COMPLETE)
             Log.i(TAG, "Memory trimmed successfully")
         } catch (e: Exception) {
