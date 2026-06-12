@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- ── Header ── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DexUltra Booster Pro"
+            android:textColor="@color/accent"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="الصلاحيات المطلوبة"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/tvPermSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="جاري الفحص…"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="20dp" />
+
+        <!-- ── صلاحية الملفات ── -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            style="@style/DexCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="الوصول الكامل للملفات"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="مطلوب — لكتابة ملفات اللعبة"
+                            android:textColor="@color/accent"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivStorageStatus"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_close" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="يتيح للتطبيق قراءة وكتابة ملفات ببجي في التخزين الخارجي بدون روت"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="10dp"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvStorageStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="مرفوض"
+                        android:textColor="@color/error"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnGrantStorage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="منح الإذن"
+                        android:textSize="12sp"
+                        style="@style/DexButton.Primary" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ── ماشر عائم (Overlay) ── -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            style="@style/DexCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="العرض فوق التطبيقات"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="مطلوب — للماشر العائم"
+                            android:textColor="@color/accent"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivOverlayStatus"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_close" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="يتيح عرض ماشر الصندوق العائم فوق لعبة ببجي أثناء اللعب"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvOverlayStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="مرفوض"
+                        android:textColor="@color/error"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnGrantOverlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="منح الإذن"
+                        android:textSize="12sp"
+                        style="@style/DexButton.Primary" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ── Shizuku (يتغير حسب الإصدار) ── -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardShizuku"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            style="@style/DexCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Shizuku"
+                            android:textColor="@color/text_primary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvShizukuBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="جاري الفحص…"
+                            android:textColor="@color/warning"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivShizukuStatus"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_close" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvShizukuDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="جاري التحقق من إصدار الأندرويد…"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="10dp"
+                    android:lineSpacingMultiplier="1.3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvShizukuStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="غير متصل"
+                        android:textColor="@color/warning"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnGrantShizuku"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="ربط Shizuku"
+                        android:textSize="12sp"
+                        style="@style/DexButton.Secondary" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ── تلميح المتابعة ── -->
+        <TextView
+            android:id="@+id/tvContinueHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/warning"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:visibility="gone" />
+
+        <!-- ── زر المتابعة ── -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="متابعة"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            style="@style/DexButton.Primary" />
+
+        <Space android:layout_width="match_parent" android:layout_height="16dp" />
+
+    </LinearLayout>
+</ScrollView>
