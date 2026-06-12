@@ -1,4 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App -->
     <string name="app_name">DexUltra Booster Pro</string>
 
     <!-- Navigation -->
@@ -9,77 +12,116 @@
 
     <!-- Splash -->
     <string name="splash_title">DexUltra Booster Pro</string>
-    <string name="splash_subtitle">مُحسّن ببجي موبايل الاحترافي</string>
+    <string name="splash_subtitle">محسن الأداء الاحترافي</string>
 
-    <!-- Main / Booster -->
-    <string name="boost_button">تعزيز الأداء</string>
+    <!-- Booster -->
+    <string name="boost_button">بدء التعزيز</string>
     <string name="boost_active">التعزيز نشط</string>
     <string name="boost_stop">إيقاف التعزيز</string>
-    <string name="status_ready">جاهز للتعزيز</string>
-    <string name="status_boosting">جاري تحسين الأداء…</string>
-    <string name="status_done">تم تطبيق التحسينات بنجاح!</string>
-    <string name="inject_files">حقن ملفات 120 FPS</string>
-    <string name="inject_success">تم الحقن بنجاح ✅ — أعد تشغيل اللعبة</string>
-    <string name="inject_fail">فشل الحقن — تحقق من الصلاحيات</string>
-    <string name="shizuku_not_running">Shizuku غير مشغّل</string>
-    <string name="shizuku_connect">ربط Shizuku</string>
-    <string name="overlay_toggle">ماشر الصندوق العائم</string>
-    <string name="fps_label">FPS الحالي</string>
-    <string name="ram_label">RAM</string>
-    <string name="temp_label">الحرارة</string>
 
-    <!-- File Injection -->
-    <string name="section_files">حقن ملفات 120 FPS</string>
-    <string name="pubg_global">PUBG Mobile Global — العالمية</string>
-    <string name="pubg_kr">PUBG Mobile KR — كوريا</string>
-    <string name="pubg_vn">PUBG Mobile VN — فيتنام</string>
-    <string name="pubg_bgmi">Battlegrounds Mobile India (BGMI)</string>
-    <string name="pubg_lite">PUBG Mobile LITE — لايت</string>
-    <string name="pubg_tw">PUBG Mobile TW — تايوان</string>
-    <string name="pubg_jp">PUBG Mobile JP — اليابان</string>
-    <string name="pubg_th">PUBG Mobile TH — تايلاند</string>
+    <string name="status_ready">جاهز للعمل</string>
+    <string name="status_boosting">جاري تحسين الأداء…</string>
+    <string name="status_done">تم تطبيق التحسينات بنجاح</string>
+
+    <string name="inject_files">تفعيل وضع 120 FPS</string>
+    <string name="inject_success">تم التطبيق بنجاح ✅</string>
+    <string name="inject_fail">فشل التطبيق — تحقق من الصلاحيات</string>
+
+    <string name="shizuku_not_running">Shizuku غير متصل</string>
+    <string name="shizuku_connect">الاتصال بـ Shizuku</string>
+
+    <string name="overlay_toggle">إظهار المؤشر العائم</string>
+
+    <string name="fps_label">معدل الإطارات</string>
+    <string name="ram_label">الذاكرة</string>
+    <string name="temp_label">درجة الحرارة</string>
+
+    <!-- Versions -->
+    <string name="section_files">إعدادات اللعبة</string>
+
+    <string name="pubg_global">PUBG Mobile Global</string>
+    <string name="pubg_kr">PUBG Mobile KR</string>
+    <string name="pubg_vn">PUBG Mobile VN</string>
+    <string name="pubg_bgmi">BGMI</string>
+    <string name="pubg_lite">PUBG Mobile Lite</string>
+    <string name="pubg_tw">PUBG Mobile TW</string>
+    <string name="pubg_jp">PUBG Mobile JP</string>
+    <string name="pubg_th">PUBG Mobile TH</string>
+
     <string name="select_version">اختر إصدار اللعبة</string>
-    <string name="show_paths">عرض مسارات الملفات</string>
-    <string name="inject_note">بدون روت — يعمل على جميع الهواتف</string>
-    <string name="inject_android12_note">Android 12+ يحتاج Shizuku</string>
-    <string name="inject_android11_note">Android 11- يعمل مباشرةً</string>
+
+    <string name="show_paths">إظهار المسارات</string>
+
+    <string name="inject_note">يعمل بدون روت</string>
+
+    <string name="inject_android12_note">
+        Android 12+ يحتاج Shizuku
+    </string>
+
+    <string name="inject_android11_note">
+        Android 11 أو أقل يعمل مباشرة
+    </string>
 
     <!-- Sensitivity -->
     <string name="sensitivity_title">إعدادات الحساسية</string>
-    <string name="gyro_on">مع جيروسكوب</string>
-    <string name="gyro_off">بدون جيروسكوب</string>
+
+    <string name="gyro_on">تفعيل الجيروسكوب</string>
+    <string name="gyro_off">إيقاف الجيروسكوب</string>
+
     <string name="sensitivity_camera">حساسية الكاميرا</string>
     <string name="sensitivity_ads">حساسية ADS</string>
-    <string name="sensitivity_gyro">حساسية الجيرو</string>
-    <string name="sensitivity_recoil">التحكم بالارتداد</string>
-    <string name="apply_sensitivity">تطبيق الإعدادات</string>
-    <string name="reset_sensitivity">إعادة تعيين</string>
-    <string name="copy_sensitivity">نسخ الإعدادات</string>
+    <string name="sensitivity_gyro">حساسية الجيروسكوب</string>
+    <string name="sensitivity_recoil">تقليل الارتداد</string>
+
+    <string name="apply_sensitivity">تطبيق</string>
+    <string name="reset_sensitivity">إعادة ضبط</string>
+    <string name="copy_sensitivity">نسخ</string>
 
     <!-- Tips -->
     <string name="tips_title">نصائح الاحتراف</string>
-    <string name="tips_subtitle">تحسين أداء ببجي موبايل</string>
+    <string name="tips_subtitle">تحسين تجربة اللعب</string>
 
     <!-- Ping -->
     <string name="ping_title">تحسين البنق</string>
+
     <string name="ping_current">البنق الحالي</string>
     <string name="ping_ms">ms</string>
-    <string name="btn_optimize_ping">تحسين البنق</string>
-    <string name="btn_dns_boost">تعزيز DNS</string>
-    <string name="dns_status_off">DNS محلي</string>
-    <string name="dns_status_on">DNS محسّن نشط</string>
-    <string name="vpn_connecting">جاري الاتصال…</string>
+
+    <string name="btn_optimize_ping">تحسين الاتصال</string>
+    <string name="btn_dns_boost">تسريع DNS</string>
+
+    <string name="dns_status_off">DNS الافتراضي</string>
+    <string name="dns_status_on">DNS المحسن نشط</string>
+
+    <string name="vpn_connecting">جارِ الاتصال…</string>
     <string name="vpn_connected">متصل</string>
     <string name="vpn_disconnected">غير متصل</string>
 
     <!-- Permissions -->
-    <string name="perm_title">الصلاحيات المطلوبة</string>
-    <string name="perm_storage">الوصول الكامل للملفات</string>
-    <string name="perm_overlay">العرض فوق التطبيقات</string>
-    <string name="perm_shizuku_required">Shizuku — مطلوب لـ Android 12+</string>
-    <string name="perm_shizuku_optional">Shizuku — اختياري لـ Android 11-</string>
+    <string name="perm_title">الأذونات المطلوبة</string>
+
+    <string name="perm_storage">
+        الوصول للملفات
+    </string>
+
+    <string name="perm_overlay">
+        الظهور فوق التطبيقات
+    </string>
+
+    <string name="perm_shizuku_required">
+        Shizuku مطلوب لـ Android 12+
+    </string>
+
+    <string name="perm_shizuku_optional">
+        Shizuku اختياري لـ Android 11-
+    </string>
+
     <string name="perm_grant">منح الإذن</string>
-    <string name="perm_granted">ممنوح ✅</string>
+
+    <string name="perm_granted">تم المنح ✅</string>
+
     <string name="perm_denied">مرفوض</string>
+
     <string name="btn_continue">متابعة</string>
+
 </resources>
