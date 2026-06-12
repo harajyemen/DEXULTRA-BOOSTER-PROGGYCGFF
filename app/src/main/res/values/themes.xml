@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- ── Base Theme ── -->
     <style name="Theme.DexUltraBoosterPro" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
@@ -21,14 +20,12 @@
         <item name="android:windowBackground">@color/primary</item>
     </style>
 
-    <!-- ── Splash Theme ── -->
     <style name="Theme.DexUltraBoosterPro.Splash" parent="Theme.DexUltraBoosterPro">
         <item name="android:windowBackground">@color/primary</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!-- ── Card Style ── -->
     <style name="DexCard" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/card_bg</item>
         <item name="cardCornerRadius">14dp</item>
@@ -37,7 +34,6 @@
         <item name="strokeWidth">1dp</item>
     </style>
 
-    <!-- ── Button: Primary (Accent) ── -->
     <style name="DexButton.Primary" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/primary_dark</item>
@@ -46,7 +42,6 @@
         <item name="rippleColor">#330099BB</item>
     </style>
 
-    <!-- ── Button: Secondary (Outlined) ── -->
     <style name="DexButton.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">@color/accent</item>
         <item name="android:textColor">@color/accent</item>
@@ -54,7 +49,13 @@
         <item name="rippleColor">#220099BB</item>
     </style>
 
-    <!-- ── Button: Boost (Large, Gradient-like) ── -->
+    <style name="DexButton.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/accent</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="rippleColor">#220099BB</item>
+    </style>
+
     <style name="DexButton.Boost" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/accent</item>
         <item name="android:textColor">@color/primary_dark</item>
@@ -64,11 +65,25 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
-    <!-- ── Spinner Item ── -->
     <style name="DexSpinnerItem" parent="Widget.AppCompat.TextView.SpinnerItem">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:background">@color/surface_elevated</item>
         <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="DexTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicatorColor">@color/accent</item>
+        <item name="tabSelectedTextColor">@color/accent</item>
+        <item name="tabTextColor">@color/text_primary</item>
+        <item name="tabBackground">@color/surface</item>
+        <item name="tabRippleColor">#220099BB</item>
+    </style>
+
+    <style name="DexSlider" parent="Widget.MaterialComponents.Slider">
+        <item name="thumbColor">@color/accent</item>
+        <item name="trackColorActive">@color/accent</item>
+        <item name="trackColorInactive">@color/surface_elevated</item>
+        <item name="haloColor">#220099BB</item>
     </style>
 
 </resources>
