@@ -90,11 +90,16 @@ class MainActivity : AppCompatActivity() {
                 "Cleaning memory..." to { PerformanceOptimizer.clearSystemCache(applicationContext) },
                 "Optimizing CPU..." to { PerformanceOptimizer.optimizeCpuGovernor() },
                 "Checking memory..." to { PerformanceOptimizer.optimizeMemory(applicationContext) },
-                "Optimizing network..." to { PerformanceOptimizer.optimizeNetwork() }
+                "Optimizing network..." to { PerformanceOptimizer.optimizeNetwork() } // الآن داخل coroutine
             )
             for ((label, action) in steps) {
                 binding.tvStatus.text = label
-                action()
+                if (label == "Optimizing network...") {
+                    // استدعاء الدالة التعليقية (suspend) مباشرة
+                    PerformanceOptimizer.optimizeNetwork()
+                } else {
+                    action()
+                }
                 delay(650)
             }
             binding.tvStatus.text = getString(R.string.status_done)
