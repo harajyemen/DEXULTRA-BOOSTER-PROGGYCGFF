@@ -3,14 +3,15 @@ package com.dex.ultra.booster.pro
 import android.content.pm.PackageManager
 import android.os.Build
 import android.util.Log
+import com.topjohnwu.superuser.Shell
 import rikka.shizuku.Shizuku
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 object ShizukuHelper {
 
     private const val TAG = "ShizukuHelper"
     const val REQUEST_CODE = 1001
+
+    private var shellInitialized = false
 
     fun requiresShizuku(): Boolean = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 
@@ -62,21 +63,27 @@ object ShizukuHelper {
         }
     }
 
+    /**
+     * تنفيذ أمر shell باستخدام Shizuku عبر libsu (آمن ومتوافق مع الإصدارات الحديثة)
+     */
     fun runCommand(command: String): String? {
-        if (!isRunning()) {
-            Log.e(TAG, "Shizuku not running")
+        if (!isAvailable()) {
+            Log.e(TAG, "Shizuku not available")
             return null
         }
         return try {
-            val process = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
-            val reader = BufferedReader(InputStreamReader(process.inputStream))
-            val output = StringBuilder()
-            var line: String?
-            while (reader.readLine().also { line = it } != null) {
-                output.append(line).append("\n")
+            if (!shellInitialized) {
+                Shell.enableVerboseLogging = BuildConfig.DEBUG
+                Shell.startShizuku()
+                shellInitialized = true
             }
-            val exitCode = process.waitFor()
-            if (exitCode == 0) output.toString().trim() else null
+            val result = Shell.cmd(command).exec()
+            if (result.isSuccess) {
+                result.out.joinToString("\n")
+            } else {
+                Log.e(TAG, "Command failed: ${result.err.joinToString("\n")}")
+                null
+            }
         } catch (e: Exception) {
             Log.e(TAG, "runCommand error: ${e.message}")
             null
@@ -87,7 +94,7 @@ object ShizukuHelper {
         return try {
             val tmpFile = java.io.File("/data/local/tmp", "tmp_${System.currentTimeMillis()}.txt")
             tmpFile.writeText(content)
-            val result = runCommand("mkdir -p ${destPath.substringBeforeLast("/")} && cp -f ${tmpFile.absolutePath} \"$destPath\" && chmod 660 \"$destPath\"")
+            val result = runCommand("mkdir -p ${destPath.substringBeforeLast("/")} && cp -f ${tmpFile.absolutePath} \"$destPath\" && chmod 660 \"$destPath\" && rm -f ${tmpFile.absolutePath}")
             tmpFile.delete()
             result != null
         } catch (e: Exception) {
@@ -99,7 +106,7 @@ object ShizukuHelper {
         return try {
             val tmpFile = java.io.File("/data/local/tmp", "tmp_${System.currentTimeMillis()}.bin")
             tmpFile.writeBytes(data)
-            val result = runCommand("mkdir -p ${destPath.substringBeforeLast("/")} && cp -f ${tmpFile.absolutePath} \"$destPath\" && chmod 660 \"$destPath\"")
+            val result = runCommand("mkdir -p ${destPath.substringBeforeLast("/")} && cp -f ${tmpFile.absolutePath} \"$destPath\" && chmod 660 \"$destPath\" && rm -f ${tmpFile.absolutePath}")
             tmpFile.delete()
             result != null
         } catch (e: Exception) {
