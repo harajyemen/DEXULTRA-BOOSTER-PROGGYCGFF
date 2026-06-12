@@ -63,9 +63,6 @@ object ShizukuHelper {
         }
     }
 
-    /**
-     * تنفيذ أمر shell باستخدام Shizuku عبر libsu (آمن ومتوافق مع الإصدارات الحديثة)
-     */
     fun runCommand(command: String): String? {
         if (!isAvailable()) {
             Log.e(TAG, "Shizuku not available")
