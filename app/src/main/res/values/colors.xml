@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colors -->
+    <color name="primary">#0D1B2A</color>
+    <color name="primary_dark">#050D14</color>
+    <color name="primary_light">#1A3A5C</color>
+    <color name="accent">#00D4FF</color>
+    <color name="accent_dark">#0099BB</color>
+    <color name="accent_glow">#4400D4FF</color>
+
+    <!-- UI Colors -->
+    <color name="surface">#0F2033</color>
+    <color name="surface_elevated">#152840</color>
+    <color name="card_bg">#1A3050</color>
+    <color name="card_border">#224466</color>
+
+    <!-- Status Colors -->
+    <color name="success">#00FF88</color>
+    <color name="warning">#FFB800</color>
+    <color name="error">#FF4466</color>
+    <color name="info">#00D4FF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8AAABB</color>
+    <color name="text_accent">#00D4FF</color>
+    <color name="text_disabled">#445566</color>
+
+    <!-- Boost Button -->
+    <color name="boost_start">#00D4FF</color>
+    <color name="boost_end">#0066FF</color>
+    <color name="boost_active_start">#FF4466</color>
+    <color name="boost_active_end">#FF6600</color>
+
+    <!-- Misc -->
+    <color name="divider">#1E3A5A</color>
+    <color name="overlay_dim">#AA000000</color>
+    <color name="crosshair_color">#FF0000</color>
+    <color name="crosshair_border">#FFFFFF</color>
+
+    <!-- Material overrides -->
+    <color name="colorPrimary">#0D1B2A</color>
+    <color name="colorPrimaryVariant">#050D14</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#00D4FF</color>
+    <color name="colorSecondaryVariant">#0099BB</color>
+    <color name="colorOnSecondary">#000000</color>
+    <color name="colorBackground">#0D1B2A</color>
+    <color name="colorSurface">#0F2033</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+    <color name="colorError">#FF4466</color>
+    <color name="colorOnError">#FFFFFF</color>
+</resources>
