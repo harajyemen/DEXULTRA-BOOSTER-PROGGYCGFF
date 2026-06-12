@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+    <!-- Allow cleartext for LAN/DNS during optimization -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">1.1.1.1</domain>
+        <domain includeSubdomains="true">8.8.8.8</domain>
+        <domain includeSubdomains="true">9.9.9.9</domain>
+    </domain-config>
+</network-security-config>
