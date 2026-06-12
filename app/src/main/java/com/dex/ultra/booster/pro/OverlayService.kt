@@ -19,8 +19,6 @@ class OverlayService : Service() {
 
     private lateinit var windowManager: WindowManager
     private var overlayView: View? = null
-    private var crosshairView: View? = null
-
     private val CHANNEL_ID = "dexultra_overlay"
 
     override fun onCreate() {
@@ -36,7 +34,6 @@ class OverlayService : Service() {
     }
 
     private fun showOverlay() {
-        // Inflate crosshair overlay
         val inflater = LayoutInflater.from(this)
         overlayView = inflater.inflate(R.layout.overlay_crosshair, null)
 
@@ -56,18 +53,15 @@ class OverlayService : Service() {
             WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
             PixelFormat.TRANSLUCENT
         )
-
         params.gravity = Gravity.CENTER
         params.x = 0
         params.y = 0
 
-        // Make draggable
         overlayView?.setOnTouchListener(object : View.OnTouchListener {
             private var initialX = 0
             private var initialY = 0
             private var initialTouchX = 0f
             private var initialTouchY = 0f
-
             override fun onTouch(v: View, event: MotionEvent): Boolean {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
@@ -97,7 +91,7 @@ class OverlayService : Service() {
 
     private fun buildNotification(): Notification {
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(android.R.drawable.sym_def_app_icon)
             .setContentTitle("DexUltra Booster Pro")
             .setContentText("الماشر العائم نشط")
             .setOngoing(true)
@@ -111,20 +105,15 @@ class OverlayService : Service() {
                 CHANNEL_ID,
                 "DexUltra Overlay",
                 NotificationManager.IMPORTANCE_LOW
-            ).apply {
-                description = "Floating crosshair overlay service"
-            }
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
+            )
+            getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         overlayView?.let {
-            try {
-                windowManager.removeView(it)
-            } catch (e: Exception) { /* ignore */ }
+            try { windowManager.removeView(it) } catch (_: Exception) {}
         }
     }
 
