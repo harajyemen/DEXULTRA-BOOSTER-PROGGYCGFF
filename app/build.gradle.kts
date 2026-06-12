@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -84,19 +85,23 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+    // Shizuku Dependencies
     implementation("dev.rikka.shizuku:api:13.1.5")
     implementation("dev.rikka.shizuku:provider:13.1.5")
+    implementation("dev.rikka.tools.refine:runtime:4.4.0")
 
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
+    // Lottie Animations
     implementation("com.airbnb.android:lottie:6.3.0")
 
+    // Root/Shell Execution Utilities (Libsu)
     implementation("com.github.topjohnwu.libsu:core:5.2.2")
     implementation("com.github.topjohnwu.libsu:service:5.2.2")
     implementation("com.github.topjohnwu.libsu:io:5.2.2")
 
-    implementation("dev.rikka.tools.refine:runtime:4.4.0")
-
+    // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
