@@ -86,22 +86,22 @@ class MainActivity : AppCompatActivity() {
         binding.tvStatus.text = getString(R.string.status_boosting)
 
         lifecycleScope.launch {
-            val steps = listOf(
-                "Cleaning memory..." to { PerformanceOptimizer.clearSystemCache(applicationContext) },
-                "Optimizing CPU..." to { PerformanceOptimizer.optimizeCpuGovernor() },
-                "Checking memory..." to { PerformanceOptimizer.optimizeMemory(applicationContext) },
-                "Optimizing network..." to { PerformanceOptimizer.optimizeNetwork() } // الآن داخل coroutine
-            )
-            for ((label, action) in steps) {
-                binding.tvStatus.text = label
-                if (label == "Optimizing network...") {
-                    // استدعاء الدالة التعليقية (suspend) مباشرة
-                    PerformanceOptimizer.optimizeNetwork()
-                } else {
-                    action()
-                }
-                delay(650)
-            }
+            binding.tvStatus.text = "Cleaning memory..."
+            PerformanceOptimizer.clearSystemCache(applicationContext)
+            delay(650)
+
+            binding.tvStatus.text = "Optimizing CPU..."
+            PerformanceOptimizer.optimizeCpuGovernor()
+            delay(650)
+
+            binding.tvStatus.text = "Checking memory..."
+            PerformanceOptimizer.optimizeMemory(applicationContext)
+            delay(650)
+
+            binding.tvStatus.text = "Optimizing network..."
+            PerformanceOptimizer.optimizeNetwork() // استدعاء suspend داخل coroutine
+            delay(650)
+
             binding.tvStatus.text = getString(R.string.status_done)
             binding.btnBoost.text = getString(R.string.boost_stop)
         }
