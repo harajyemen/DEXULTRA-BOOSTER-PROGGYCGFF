@@ -87,7 +87,7 @@ class DnsVpnService : VpnService() {
             isRunning = true
             // تحديث الإشعار بعد الاتصال
             val nm = getSystemService(NotificationManager::class.java)
-            nm.notify(NOTIF_ID, buildNotification("DNS نشط: $DNS_PRIMARY"))
+            nm?.notify(NOTIF_ID, buildNotification("DNS نشط: $DNS_PRIMARY"))
 
             startTunnel()
             Log.i(TAG, "DNS VPN started — $DNS_PRIMARY / $DNS_SECONDARY")
@@ -153,7 +153,7 @@ class DnsVpnService : VpnService() {
         System.arraycopy(hdr, 0, pkt, 0, 20)
         System.arraycopy(hdr, 16, pkt, 12, 4)
         System.arraycopy(hdr, 12, pkt, 16, 4)
-        pkt[2] = ((total shr 8) and 0xFF).toByte()
+        pkt[2] = ((total shr 8) and 0xFF).toZero()
         pkt[3] = (total and 0xFF).toByte()
         System.arraycopy(hdr, 22, pkt, 20, 2)
         System.arraycopy(hdr, 20, pkt, 22, 2)
@@ -165,14 +165,11 @@ class DnsVpnService : VpnService() {
         return pkt
     }
 
+    private fun Int.toZero(): Byte = ((this shr 8) and 0xFF).toByte()
+
     // ── الإشعار الدائم ──────────────────────────────────────────────
 
-    /**
-     * إشعار دائم واضح مع أيقونة التطبيق — يمنع Android من إيقاف الخدمة.
-     * المستخدم يرى الإشعار في شريط الحالة طالما DNS نشط.
-     */
     private fun buildNotification(statusText: String): Notification {
-        // نية فتح التطبيق عند النقر على الإشعار
         val openIntent = Intent(this, PingOptimizerActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
@@ -182,7 +179,6 @@ class DnsVpnService : VpnService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
         )
 
-        // نية إيقاف DNS من الإشعار مباشرةً
         val stopIntent = Intent(this, DnsVpnService::class.java).apply {
             action = ACTION_STOP_DNS
         }
@@ -193,11 +189,11 @@ class DnsVpnService : VpnService() {
         )
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.mipmap.ic_launcher_round)        // أيقونة التطبيق في شريط الحالة
+            .setSmallIcon(R.drawable.ic_launcher_foreground) // استخدام الـ drawable الرئيسي لتجنب أخطاء الميبماب في التجميع
             .setContentTitle("DexUltra — DNS نشط")
             .setContentText(statusText)
             .setSubText("اضغط لفتح التطبيق")
-            .setOngoing(true)                                 // لا يمكن إزالته بالسحب
+            .setOngoing(true)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(openPi)
             .addAction(android.R.drawable.ic_menu_close_clear_cancel, "إيقاف DNS", stopPi)
@@ -216,7 +212,7 @@ class DnsVpnService : VpnService() {
                 description = "يُظهر حالة تحسين البنق عند التشغيل في الخلفية"
                 setShowBadge(true)
             }
-            getSystemService(NotificationManager::class.java).createNotificationChannel(ch)
+            getSystemService(NotificationManager::class.java)?.createNotificationChannel(ch)
         }
     }
 }
