@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_nav_home"
+        android:title="الرئيسية" />
+    <item
+        android:id="@+id/nav_sensitivity"
+        android:icon="@drawable/ic_nav_sensitivity"
+        android:title="الحساسية" />
+    <item
+        android:id="@+id/nav_tips"
+        android:icon="@drawable/ic_nav_tips"
+        android:title="النصائح" />
+    <item
+        android:id="@+id/nav_ping"
+        android:icon="@drawable/ic_nav_ping"
+        android:title="البنق" />
+</menu>
