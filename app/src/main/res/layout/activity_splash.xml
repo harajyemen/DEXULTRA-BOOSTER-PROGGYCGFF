@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/primary_dark"
+    android:padding="32dp">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:scaleType="fitCenter"
+        android:contentDescription="Logo" />
+
+    <Space android:layout_width="match_parent" android:layout_height="24dp" />
+
+    <!-- App Name -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DexUltra Booster Pro"
+        android:textColor="@color/accent"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:letterSpacing="0.05" />
+
+    <Space android:layout_width="match_parent" android:layout_height="8dp" />
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/tvTagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="مُحسّن ببجي موبايل الاحترافي"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:gravity="center" />
+
+    <Space android:layout_width="match_parent" android:layout_height="48dp" />
+
+    <!-- Loading indicator -->
+    <ProgressBar
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminateTint="@color/accent"
+        style="?android:attr/progressBarStyle" />
+
+</LinearLayout>
