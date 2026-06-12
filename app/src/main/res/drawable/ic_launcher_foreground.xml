@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer glow ring -->
+    <path
+        android:fillColor="#2200D4FF"
+        android:pathData="M54,10 A44,44 0 1,1 53.99,10 Z" />
+
+    <!-- Main shield shape -->
+    <path
+        android:fillColor="#00D4FF"
+        android:pathData="M54,15 L75,25 L75,48 Q75,65 54,78 Q33,65 33,48 L33,25 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5" />
+
+    <!-- Inner shield (darker) -->
+    <path
+        android:fillColor="#0D1B2A"
+        android:pathData="M54,22 L70,30 L70,48 Q70,61 54,72 Q38,61 38,48 L38,30 Z" />
+
+    <!-- Lightning bolt / D letter -->
+    <path
+        android:fillColor="#00D4FF"
+        android:pathData="M46,35 L58,35 Q66,35 66,46 Q66,57 58,57 L46,57 Z
+                          M50,39 L50,53 L57,53 Q61,53 61,46 Q61,39 57,39 Z" />
+
+    <!-- X accent marks -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,62 L45,65 L42,68 L40,66 Z"
+        android:fillAlpha="0.7" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M66,62 L68,65 L66,68 L63,66 Z"
+        android:fillAlpha="0.7" />
+
+    <!-- Bottom text line decoration -->
+    <path
+        android:fillColor="#00D4FF"
+        android:pathData="M44,72 L64,72"
+        android:strokeColor="#00D4FF"
+        android:strokeWidth="2"
+        android:fillAlpha="0.8" />
+
+</vector>
