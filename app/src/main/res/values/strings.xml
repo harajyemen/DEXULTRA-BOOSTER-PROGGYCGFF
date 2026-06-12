@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- App -->
     <string name="app_name">DexUltra Booster Pro</string>
 
-    <!-- Navigation -->
     <string name="nav_home">الرئيسية</string>
     <string name="nav_sensitivity">الحساسية</string>
     <string name="nav_tips">النصائح</string>
     <string name="nav_ping">تحسين البنق</string>
 
-    <!-- Splash -->
     <string name="splash_title">DexUltra Booster Pro</string>
     <string name="splash_subtitle">محسن الأداء الاحترافي</string>
 
-    <!-- Booster -->
     <string name="boost_button">بدء التعزيز</string>
     <string name="boost_active">التعزيز نشط</string>
     <string name="boost_stop">إيقاف التعزيز</string>
@@ -36,7 +32,6 @@
     <string name="ram_label">الذاكرة</string>
     <string name="temp_label">درجة الحرارة</string>
 
-    <!-- Versions -->
     <string name="section_files">إعدادات اللعبة</string>
 
     <string name="pubg_global">PUBG Mobile Global</string>
@@ -54,15 +49,10 @@
 
     <string name="inject_note">يعمل بدون روت</string>
 
-    <string name="inject_android12_note">
-        Android 12+ يحتاج Shizuku
-    </string>
+    <string name="inject_android12_note">Android 12+ يحتاج Shizuku</string>
 
-    <string name="inject_android11_note">
-        Android 11 أو أقل يعمل مباشرة
-    </string>
+    <string name="inject_android11_note">Android 11 أو أقل يعمل مباشرة</string>
 
-    <!-- Sensitivity -->
     <string name="sensitivity_title">إعدادات الحساسية</string>
 
     <string name="gyro_on">تفعيل الجيروسكوب</string>
@@ -77,11 +67,9 @@
     <string name="reset_sensitivity">إعادة ضبط</string>
     <string name="copy_sensitivity">نسخ</string>
 
-    <!-- Tips -->
     <string name="tips_title">نصائح الاحتراف</string>
     <string name="tips_subtitle">تحسين تجربة اللعب</string>
 
-    <!-- Ping -->
     <string name="ping_title">تحسين البنق</string>
 
     <string name="ping_current">البنق الحالي</string>
@@ -97,31 +85,22 @@
     <string name="vpn_connected">متصل</string>
     <string name="vpn_disconnected">غير متصل</string>
 
-    <!-- Permissions -->
     <string name="perm_title">الأذونات المطلوبة</string>
-
-    <string name="perm_storage">
-        الوصول للملفات
-    </string>
-
-    <string name="perm_overlay">
-        الظهور فوق التطبيقات
-    </string>
-
-    <string name="perm_shizuku_required">
-        Shizuku مطلوب لـ Android 12+
-    </string>
-
-    <string name="perm_shizuku_optional">
-        Shizuku اختياري لـ Android 11-
-    </string>
-
+    <string name="perm_storage">الوصول للملفات</string>
+    <string name="perm_overlay">الظهور فوق التطبيقات</string>
+    <string name="perm_shizuku_required">Shizuku مطلوب لـ Android 12+</string>
+    <string name="perm_shizuku_optional">Shizuku اختياري لـ Android 11-</string>
     <string name="perm_grant">منح الإذن</string>
-
     <string name="perm_granted">تم المنح ✅</string>
-
     <string name="perm_denied">مرفوض</string>
-
     <string name="btn_continue">متابعة</string>
+
+    <string name="tag_3p">شخص ثالث</string>
+    <string name="tag_red_zone">المنطقة الحمراء</string>
+    <string name="tag_smoke">الدخان</string>
+    <string name="tag_4x">4x</string>
+    <string name="tag_8x">8x</string>
+    <string name="tag_win94">Win94</string>
+    <string name="tag_ads">ADS</string>
 
 </resources>
