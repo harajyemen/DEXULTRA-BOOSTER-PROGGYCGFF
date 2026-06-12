@@ -28,22 +28,12 @@ class PingOptimizerActivity : AppCompatActivity() {
         }
     }
 
-    // DNS servers optimized for gaming in the Middle East
     private val dnsServers = mapOf(
-        "cloudflare_gaming" to DnsServer("Cloudflare Gaming", "1.1.1.1", "1.0.0.1"),
+        "cloudflare" to DnsServer("Cloudflare Gaming", "1.1.1.1", "1.0.0.1"),
         "google" to DnsServer("Google DNS", "8.8.8.8", "8.8.4.4"),
         "opendns" to DnsServer("OpenDNS", "208.67.222.222", "208.67.220.220"),
-        "quad9" to DnsServer("Quad9 (آمن)", "9.9.9.9", "149.112.112.112"),
-        "adguard" to DnsServer("AdGuard Gaming", "94.140.14.14", "94.140.15.15"),
-        "pubg_optimized" to DnsServer("PUBG Optimized", "1.1.1.1", "8.8.8.8") // Cloudflare primary
-    )
-
-    // Game server IPs for PUBG Mobile (major regions)
-    private val pubgServers = mapOf(
-        "auto" to "auto",
-        "me" to "kr-pubg-gt.pubg.com",      // Middle East region
-        "asia" to "prod-live-front.game.kakao.com",
-        "eu" to "eu-pubg-front.pubg.com"
+        "quad9" to DnsServer("Quad9 (Secure)", "9.9.9.9", "149.112.112.112"),
+        "adguard" to DnsServer("AdGuard Gaming", "94.140.14.14", "94.140.15.15")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,10 +51,10 @@ class PingOptimizerActivity : AppCompatActivity() {
 
     private fun setupSpinner() {
         val serverNames = listOf(
-            "🌐 تلقائي (أفضل بنق)",
-            "🏙️ الشرق الأوسط",
-            "🌏 آسيا",
-            "🌍 أوروبا"
+            "🌐 Auto (Best Ping)",
+            "🏙️ Middle East",
+            "🌏 Asia",
+            "🌍 Europe"
         )
         binding.spinnerServer.adapter = android.widget.ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, serverNames
@@ -96,23 +86,20 @@ class PingOptimizerActivity : AppCompatActivity() {
 
     private fun optimizePing() {
         isOptimizing = true
-        binding.btnOptimizePing.text = "⏹ إيقاف التحسين"
+        binding.btnOptimizePing.text = "⏹ Stop"
         binding.tvPingStatus.text = getString(R.string.vpn_connecting)
 
         lifecycleScope.launch {
-            // Step 1: Optimize network buffers
-            binding.tvPingStatus.text = "🔧 ضبط مخازن الشبكة…"
+            binding.tvPingStatus.text = "🔧 Tuning network buffers…"
             PerformanceOptimizer.optimizeNetwork()
             delay(600)
 
-            // Step 2: Find best DNS
-            binding.tvPingStatus.text = "🌐 اختبار خوادم DNS…"
+            binding.tvPingStatus.text = "🌐 Testing DNS servers…"
             val bestDns = findBestDns()
             delay(600)
 
-            // Step 3: Apply via Shizuku if available
-            if (ShizukuHelper.isAvailable()) {
-                binding.tvPingStatus.text = "⚡ تطبيق DNS محسّن: ${bestDns.primary}…"
+            if (ShizukuHelper.isAvailable() && ShizukuHelper.requiresShizuku()) {
+                binding.tvPingStatus.text = "⚡ Applying optimized DNS: ${bestDns.primary}…"
                 applyDnsViaShizuku(bestDns)
             }
 
@@ -120,7 +107,7 @@ class PingOptimizerActivity : AppCompatActivity() {
             binding.tvPingStatus.text = "✅ ${getString(R.string.vpn_connected)}"
             Toast.makeText(
                 this@PingOptimizerActivity,
-                "✅ تم تحسين البنق بنجاح!\nDNS: ${bestDns.primary}",
+                "✅ Ping optimized!\nDNS: ${bestDns.primary}",
                 Toast.LENGTH_LONG
             ).show()
         }
@@ -143,7 +130,7 @@ class PingOptimizerActivity : AppCompatActivity() {
 
     private fun startDnsVpn() {
         isDnsActive = true
-        binding.btnDnsBoost.text = "🔴 إيقاف DNS"
+        binding.btnDnsBoost.text = "🔴 Stop DNS"
         binding.tvDnsStatus.text = getString(R.string.dns_status_on)
 
         val selectedDns = dnsServers.values.elementAt(binding.spinnerDns.selectedItemPosition)
@@ -154,7 +141,7 @@ class PingOptimizerActivity : AppCompatActivity() {
         }
         startService(serviceIntent)
 
-        Toast.makeText(this, "✅ DNS محسّن نشط: ${selectedDns.name}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "✅ DNS active: ${selectedDns.name}", Toast.LENGTH_SHORT).show()
     }
 
     private fun stopDnsVpn() {
@@ -165,9 +152,8 @@ class PingOptimizerActivity : AppCompatActivity() {
     }
 
     private suspend fun findBestDns(): DnsServer = withContext(Dispatchers.IO) {
-        var best = dnsServers["cloudflare_gaming"]!!
+        var best = dnsServers["cloudflare"]!!
         var bestPing = Long.MAX_VALUE
-
         for (server in dnsServers.values) {
             val ping = measureDnsPing(server.primary)
             if (ping < bestPing) {
@@ -201,18 +187,14 @@ class PingOptimizerActivity : AppCompatActivity() {
     private fun startPingMonitor() {
         lifecycleScope.launch {
             while (true) {
-                val ping = withContext(Dispatchers.IO) {
-                    measurePubgPing()
-                }
+                val ping = withContext(Dispatchers.IO) { measurePubgPing() }
                 binding.tvPingValue.text = if (ping < Long.MAX_VALUE) "${ping}ms" else "--"
-
                 val color = when {
-                    ping < 40 -> getColor(R.color.success)
-                    ping < 80 -> getColor(R.color.warning)
-                    else -> getColor(R.color.error)
+                    ping < 40 -> R.color.success
+                    ping < 80 -> R.color.warning
+                    else -> R.color.error
                 }
-                binding.tvPingValue.setTextColor(color)
-
+                binding.tvPingValue.setTextColor(getColor(color))
                 delay(3000)
             }
         }
@@ -241,8 +223,4 @@ class PingOptimizerActivity : AppCompatActivity() {
     }
 }
 
-data class DnsServer(
-    val name: String,
-    val primary: String,
-    val secondary: String
-)
+data class DnsServer(val name: String, val primary: String, val secondary: String)
