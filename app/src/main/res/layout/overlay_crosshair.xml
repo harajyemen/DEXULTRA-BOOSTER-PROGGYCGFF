@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- Crosshair: horizontal line -->
+    <View
+        android:layout_width="24dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:background="@color/crosshair_color" />
+
+    <!-- Crosshair: vertical line -->
+    <View
+        android:layout_width="2dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:background="@color/crosshair_color" />
+
+    <!-- Center dot -->
+    <View
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="@color/crosshair_color" />
+
+</FrameLayout>
