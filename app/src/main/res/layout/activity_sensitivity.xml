@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/primary">
+
+    <!-- Gyro Tab -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutSens"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/surface"
+        style="@style/DexTabLayout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Preset Name -->
+            <TextView
+                android:id="@+id/tvPresetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="كلاسيكي – بدون جيرو"
+                android:textColor="@color/accent"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingBottom="12dp" />
+
+            <!-- Preset Chips -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipClassic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="كلاسيكي"
+                    android:checked="true"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    app:chipBackgroundColor="@color/surface_elevated"
+                    android:textColor="@color/text_primary"
+                    app:checkedIconTint="@color/accent"
+                    app:chipStrokeColor="@color/accent"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWarehouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="مستودع"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    app:chipBackgroundColor="@color/surface_elevated"
+                    android:textColor="@color/text_primary"
+                    app:chipStrokeColor="@color/card_border"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHeadshot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="هيدشوت"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    app:chipBackgroundColor="@color/surface_elevated"
+                    android:textColor="@color/text_primary"
+                    app:chipStrokeColor="@color/card_border"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="احترافي"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    app:chipBackgroundColor="@color/surface_elevated"
+                    android:textColor="@color/text_primary"
+                    app:chipStrokeColor="@color/card_border"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAntiLag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ضد اللاق"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    app:chipBackgroundColor="@color/surface_elevated"
+                    android:textColor="@color/text_primary"
+                    app:chipStrokeColor="@color/card_border"
+                    app:chipStrokeWidth="1dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Camera Section -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="📷 حساسية الكاميرا"
+                android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <include layout="@layout/item_slider" android:id="@+id/sliderCamera3pItem" />
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCamera3p"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="100"
+                android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCameraRedZone"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="98"
+                android:stepSize="1" android:tag="المنطقة الحمراء" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCameraSmoke"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="86"
+                android:stepSize="1" android:tag="الدخان" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCamera4x"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="92"
+                android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCamera8x"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="95"
+                android:stepSize="1" android:tag="8x" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderCameraWin94"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="98"
+                android:stepSize="1" android:tag="Win94" style="@style/DexSlider" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/divider" android:layout_marginVertical="12dp" />
+
+            <!-- ADS Section -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="🔭 حساسية ADS"
+                android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAds3p"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="55"
+                android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAdsRedZone"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="52"
+                android:stepSize="1" android:tag="المنطقة الحمراء" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAdsSmoke"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="48"
+                android:stepSize="1" android:tag="الدخان" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAds4x"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="40"
+                android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAds8x"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="35"
+                android:stepSize="1" android:tag="8x" style="@style/DexSlider" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderAdsWin94"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="200" android:value="30"
+                android:stepSize="1" android:tag="Win94" style="@style/DexSlider" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/divider" android:layout_marginVertical="12dp" />
+
+            <!-- Gyro Section (hidden by default) -->
+            <LinearLayout
+                android:id="@+id/layoutGyro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🌀 حساسية الجيروسكوب"
+                    android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
+                    android:paddingBottom="8dp" />
+
+                <com.google.android.material.slider.Slider android:id="@+id/sliderGyro3p"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:valueFrom="0" android:valueTo="400" android:value="300"
+                    android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+
+                <com.google.android.material.slider.Slider android:id="@+id/sliderGyroAds"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:valueFrom="0" android:valueTo="400" android:value="280"
+                    android:stepSize="1" android:tag="ADS" style="@style/DexSlider" />
+
+                <com.google.android.material.slider.Slider android:id="@+id/sliderGyro4x"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:valueFrom="0" android:valueTo="400" android:value="260"
+                    android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/divider" android:layout_marginVertical="12dp" />
+            </LinearLayout>
+
+            <!-- Recoil Section -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="🎯 التحكم بالارتداد"
+                android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <com.google.android.material.slider.Slider android:id="@+id/sliderRecoil"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:valueFrom="0" android:valueTo="100" android:value="75"
+                android:stepSize="1" style="@style/DexSlider" />
+
+            <Space android:layout_width="match_parent" android:layout_height="16dp" />
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnResetSens"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:text="↺ إعادة"
+                    style="@style/DexButton.Outlined" />
+
+                <Button
+                    android:id="@+id/btnCopySens"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="6dp"
+                    android:text="📋 نسخ"
+                    style="@style/DexButton.Outlined" />
+
+                <Button
+                    android:id="@+id/btnApplySens"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="6dp"
+                    android:text="✅ تطبيق"
+                    style="@style/DexButton.Primary" />
+            </LinearLayout>
+
+            <Space android:layout_width="match_parent" android:layout_height="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
