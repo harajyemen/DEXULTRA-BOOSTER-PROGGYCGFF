@@ -1,6 +1,7 @@
 package com.dex.ultra.booster.pro
 
 import android.app.ActivityManager
+import android.content.ComponentCallbacks2
 import android.content.Context
 import android.os.Process
 import android.util.Log
@@ -14,7 +15,8 @@ object PerformanceOptimizer {
     fun clearSystemCache(context: Context) {
         try {
             val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            activityManager.trimMemory(ActivityManager.TRIM_MEMORY_COMPLETE)
+            // التصحيح: استخدام ComponentCallbacks2.TRIM_MEMORY_COMPLETE بدلاً من ActivityManager.TRIM_MEMORY_COMPLETE
+            activityManager.trimMemory(ComponentCallbacks2.TRIM_MEMORY_COMPLETE)
             Log.i(TAG, "Memory trimmed successfully")
         } catch (e: Exception) {
             Log.w(TAG, "clearSystemCache failed: ${e.message}")
