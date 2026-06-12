@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:background="@color/primary">
 
-    <!-- Gyro Tab -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutSens"
         android:layout_width="match_parent"
@@ -25,7 +24,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Preset Name -->
             <TextView
                 android:id="@+id/tvPresetName"
                 android:layout_width="match_parent"
@@ -37,7 +35,6 @@
                 android:gravity="center"
                 android:paddingBottom="12dp" />
 
-            <!-- Preset Chips -->
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
                 android:layout_width="match_parent"
@@ -104,47 +101,46 @@
                     app:chipStrokeWidth="1dp" />
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Camera Section -->
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="📷 حساسية الكاميرا"
                 android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
                 android:paddingBottom="8dp" />
 
             <include layout="@layout/item_slider" android:id="@+id/sliderCamera3pItem" />
+            
             <com.google.android.material.slider.Slider android:id="@+id/sliderCamera3p"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="100"
-                android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_3p" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderCameraRedZone"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="98"
-                android:stepSize="1" android:tag="المنطقة الحمراء" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_red_zone" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderCameraSmoke"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="86"
-                android:stepSize="1" android:tag="الدخان" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_smoke" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderCamera4x"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="92"
-                android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_4x" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderCamera8x"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="95"
-                android:stepSize="1" android:tag="8x" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_8x" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderCameraWin94"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="98"
-                android:stepSize="1" android:tag="Win94" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_win94" style="@style/DexSlider" />
 
             <View android:layout_width="match_parent" android:layout_height="1dp"
                 android:background="@color/divider" android:layout_marginVertical="12dp" />
 
-            <!-- ADS Section -->
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="🔭 حساسية ADS"
                 android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
@@ -153,37 +149,36 @@
             <com.google.android.material.slider.Slider android:id="@+id/sliderAds3p"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="55"
-                android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_3p" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderAdsRedZone"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="52"
-                android:stepSize="1" android:tag="المنطقة الحمراء" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_red_zone" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderAdsSmoke"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="48"
-                android:stepSize="1" android:tag="الدخان" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_smoke" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderAds4x"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="40"
-                android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_4x" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderAds8x"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="35"
-                android:stepSize="1" android:tag="8x" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_8x" style="@style/DexSlider" />
 
             <com.google.android.material.slider.Slider android:id="@+id/sliderAdsWin94"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:valueFrom="0" android:valueTo="200" android:value="30"
-                android:stepSize="1" android:tag="Win94" style="@style/DexSlider" />
+                android:stepSize="1" android:tag="@string/tag_win94" style="@style/DexSlider" />
 
             <View android:layout_width="match_parent" android:layout_height="1dp"
                 android:background="@color/divider" android:layout_marginVertical="12dp" />
 
-            <!-- Gyro Section (hidden by default) -->
             <LinearLayout
                 android:id="@+id/layoutGyro"
                 android:layout_width="match_parent"
@@ -199,23 +194,22 @@
                 <com.google.android.material.slider.Slider android:id="@+id/sliderGyro3p"
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:valueFrom="0" android:valueTo="400" android:value="300"
-                    android:stepSize="1" android:tag="شخص ثالث" style="@style/DexSlider" />
+                    android:stepSize="1" android:tag="@string/tag_3p" style="@style/DexSlider" />
 
                 <com.google.android.material.slider.Slider android:id="@+id/sliderGyroAds"
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:valueFrom="0" android:valueTo="400" android:value="280"
-                    android:stepSize="1" android:tag="ADS" style="@style/DexSlider" />
+                    android:stepSize="1" android:tag="@string/tag_ads" style="@style/DexSlider" />
 
                 <com.google.android.material.slider.Slider android:id="@+id/sliderGyro4x"
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:valueFrom="0" android:valueTo="400" android:value="260"
-                    android:stepSize="1" android:tag="4x" style="@style/DexSlider" />
+                    android:stepSize="1" android:tag="@string/tag_4x" style="@style/DexSlider" />
 
                 <View android:layout_width="match_parent" android:layout_height="1dp"
                     android:background="@color/divider" android:layout_marginVertical="12dp" />
             </LinearLayout>
 
-            <!-- Recoil Section -->
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="🎯 التحكم بالارتداد"
                 android:textColor="@color/accent" android:textSize="14sp" android:textStyle="bold"
@@ -228,7 +222,6 @@
 
             <Space android:layout_width="match_parent" android:layout_height="16dp" />
 
-            <!-- Action Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
